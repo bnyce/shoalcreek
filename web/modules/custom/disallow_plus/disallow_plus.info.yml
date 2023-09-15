@@ -1,0 +1,6 @@
+name: Disallow Plus
+type: module
+description: Disallows the "+" character in the group_representative_email_address field of the Meeting Rooms Reservation Webform.
+core_version_requirement: ^9
+package: Custom
+

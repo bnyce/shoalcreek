@@ -1,0 +1,86 @@
+#ddev-generated
+
+http:
+  routers:
+    
+    
+    apl-togo-web-80-http:
+      
+      rule: HostRegexp(`apl-togo.ddev.site`)
+      
+      service: "apl-togo-web-80-http"
+      tls: false
+      entrypoints:
+        - http-80
+    
+    
+    apl-togo-web-8025-http:
+      
+      rule: HostRegexp(`apl-togo.ddev.site`)
+      
+      service: "apl-togo-web-8025-http"
+      tls: false
+      entrypoints:
+        - http-8025
+    
+    
+    
+    
+    
+    
+    apl-togo-web-80-https:
+      
+      rule: HostRegexp(`apl-togo.ddev.site`)
+      
+      service: "apl-togo-web-80-https"
+      
+      tls: true
+      
+      entrypoints:
+        - http-443
+    
+    
+    apl-togo-web-8025-https:
+      
+      rule: HostRegexp(`apl-togo.ddev.site`)
+      
+      service: "apl-togo-web-8025-https"
+      
+      tls: true
+      
+      entrypoints:
+        - http-8026
+    
+    
+
+  services:
+    
+    apl-togo-web-80-http:
+      loadbalancer:
+        servers:
+          - url: http://ddev-apl-togo-web:80
+    
+    apl-togo-web-8025-http:
+      loadbalancer:
+        servers:
+          - url: http://ddev-apl-togo-web:8025
+    
+    apl-togo-web-80-https:
+    
+      loadbalancer:
+        servers:
+          - url: http://ddev-apl-togo-web:80
+    
+    apl-togo-web-8025-https:
+    
+      loadbalancer:
+        servers:
+          - url: http://ddev-apl-togo-web:8025
+    
+
+
+tls:
+  certificates:
+    - certFile: /mnt/ddev-global-cache/traefik/certs/apl-togo.crt
+      keyFile: /mnt/ddev-global-cache/traefik/certs/apl-togo.key
+
