@@ -1,5 +1,3 @@
-# shoalcreek
-=======
 # Composer-enabled Drupal template
 
 This is Pantheon's recommended starting point for forking new [Drupal](https://www.drupal.org/) upstreams
