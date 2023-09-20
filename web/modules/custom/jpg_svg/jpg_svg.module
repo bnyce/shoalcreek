@@ -1,0 +1,69 @@
+<?php
+
+require_once DRUPAL_ROOT . '/core/includes/bootstrap.inc';
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\Entity\File;
+
+/**
+ * Implements hook_entity_presave().
+ */
+function jpg_svg_entity_presave(EntityInterface $entity) {
+  // Check if the entity is a QR node and has a field_image_converter field.
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'qr' && $entity->hasField('field_image_converter')) {
+    $field_image_converter = $entity->get('field_image_converter');
+    $field_qr = $entity->get('field_qr');
+    $field_qr_text = $entity->get('field_qr')->value;
+    $title = $entity->get('title')->value;
+    $file = $title;
+
+        $jpg_path2 = 'https://apl-cms-dev.ddev.site/image-qr-generate-with-url?path=' . $field_qr_text;
+        $qr_command = 'qrencode -o /var/www/html/web/sites/default/files/qr/bb' . $field_qr_text . '.png -s 10 "' . $field_qr_text . '"';
+        exec($qr_command);
+
+// Download the remote image and save it locally.
+$remote_image_url = $jpg_path2;
+$image_data = file_get_contents($remote_image_url);
+$image_uri = 'public://qr/'.$file.'.jpg';
+file_save_data($image_data, $image_uri);
+
+// Load the local image into an ImageMagick convert command.
+$image = \Drupal::service('image.factory')->get($image_uri);
+//$convert_command = "convert $image_uri -resize 800x600 output.jpg";
+//exec($convert_command);
+
+
+
+
+
+        $jpg_path = 'public://qr/';
+    
+        // Trim the border and convert the JPG to SVG.
+        $svg_path = $jpg_path . $file . '.svg';
+        $uri2 = '/sites/default/files/' . $file . '.svg';
+        $convert_command = 'convert -ping -profile /dev/null \'' . $image_uri . '\' -fuzz 10% -trim +repage ' . $svg_path;
+       // $convert_command = 'convert -ping -profile /dev/null \'' . $image_uri . '\' ' . $svg_path;
+        exec($convert_command);
+
+        // Save the converted SVG file as a new file entity.
+        $svg_file = File::create([
+          'uid' => 1,
+          'filename' => $svg_path,
+ //         'filename' => pathinfo($jpg_path, PATHINFO_FILENAME) . '.svg',
+//          'uri' => $svg_path,
+          'uri' => $svg_path,
+          'status' => FILE_STATUS_PERMANENT,
+          'filemime' => 'image/svg+xml',
+        ]);
+        $svg_file->save();
+
+        // Update the field_image_converter field with the new SVG file.
+        $field_image_converter->setValue([
+          'target_id' => $svg_file->id(),
+        ]);
+     //   $entity->set('field_image_converter', $field_image_converter);
+ //     }
+ //   }
+  }
+}
+

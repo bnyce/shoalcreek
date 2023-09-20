@@ -1,0 +1,4 @@
+name: JPG to SVG
+description: Converts images from JPG to SVG and trims the border
+type: module
+core_version_requirement: ^9 

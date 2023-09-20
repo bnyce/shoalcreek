@@ -1,0 +1,51 @@
+<?php
+
+require_once DRUPAL_ROOT . '/core/includes/bootstrap.inc';
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\Entity\File;
+
+/**
+ * Implements hook_entity_presave().
+ */
+function jpg_svg_entity_presave(EntityInterface $entity) {
+  // Check if the entity is a QR node and has a field_image_converter field.
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'qr' && $entity->hasField('field_image_converter')) {
+    $field_image_converter = $entity->get('field_image_converter');
+    $field_qr = $entity->get('field_qr');
+    
+    // Check if the field has a file uploaded and the uploaded file is a JPG.
+    if (!$field_image_converter->isEmpty() && $field_image_converter->entity->getFileUri() !== '') {
+      $file = File::load($field_image_converter->entity->fid->value);
+      if ($file->getMimeType() === 'image/jpeg') {
+
+        // Get the path of the uploaded JPG file.
+        $jpg_path = \Drupal::service('file_system')->realpath($file->getFileUri());
+//        $jpg_path = '/var/www/html/sites/default/files/ve_2.jpg';
+        drupal_set_message('The value of $jpg_path is: ' . $jpg_path);
+
+        // Trim the border and convert the JPG to SVG.
+        $svg_path = pathinfo($jpg_path, PATHINFO_DIRNAME) . '/' . pathinfo($jpg_path, PATHINFO_FILENAME) . '.svg';
+//        $convert_command = 'convert ' . $jpg_path . ' -fuzz 10% -trim +repage ' . $svg_path;
+        $convert_command = 'convert ' . $jpg_path . ' ' . $svg_path;
+        exec($convert_command);
+
+        // Save the converted SVG file as a new file entity.
+        $svg_file = File::create([
+          'uid' => $file->getOwnerId(),
+          'filename' => pathinfo($jpg_path, PATHINFO_FILENAME) . '.svg',
+          'uri' => $svg_path,
+          'status' => FILE_STATUS_PERMANENT,
+          'filemime' => 'image/svg+xml',
+        ]);
+        $svg_file->save();
+
+        // Update the field_image_converter field with the new SVG file.
+        $field_image_converter->setValue([
+          'target_id' => $svg_file->id(),
+        ]);
+     //   $entity->set('field_image_converter', $field_image_converter);
+      }
+    }
+  }
+}

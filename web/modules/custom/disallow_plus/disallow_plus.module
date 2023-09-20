@@ -1,0 +1,29 @@
+<?php
+
+namespace Drupal\DisallowPlus\Form;
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\webform\WebformSubmissionForm;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() to disallow the "+" character in the email field.
+ */
+class DisallowPlus extends WebformSubmissionForm {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    parent::validateForm($form, $form_state);
+
+    // Get the email value from the submitted form.
+    $email = $form_state->getValue('group_representative_email_address');
+
+    // Disallow the "+" character in the email field.
+    if (strpos($email, '+') !== FALSE) {
+      $form_state->setErrorByName('group_representative_email_address', $this->t('The email address may not contain the "+" character.'));
+    }
+  }
+
+}
+

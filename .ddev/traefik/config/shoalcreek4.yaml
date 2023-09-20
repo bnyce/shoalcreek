@@ -1,0 +1,86 @@
+#ddev-generated
+
+http:
+  routers:
+    
+    
+    shoalcreek4-web-80-http:
+      
+      rule: HostRegexp(`shoalcreek4.ddev.site`)
+      
+      service: "shoalcreek4-web-80-http"
+      tls: false
+      entrypoints:
+        - http-80
+    
+    
+    shoalcreek4-web-8025-http:
+      
+      rule: HostRegexp(`shoalcreek4.ddev.site`)
+      
+      service: "shoalcreek4-web-8025-http"
+      tls: false
+      entrypoints:
+        - http-8025
+    
+    
+    
+    
+    
+    
+    shoalcreek4-web-80-https:
+      
+      rule: HostRegexp(`shoalcreek4.ddev.site`)
+      
+      service: "shoalcreek4-web-80-https"
+      
+      tls: true
+      
+      entrypoints:
+        - http-443
+    
+    
+    shoalcreek4-web-8025-https:
+      
+      rule: HostRegexp(`shoalcreek4.ddev.site`)
+      
+      service: "shoalcreek4-web-8025-https"
+      
+      tls: true
+      
+      entrypoints:
+        - http-8026
+    
+    
+
+  services:
+    
+    shoalcreek4-web-80-http:
+      loadbalancer:
+        servers:
+          - url: http://ddev-shoalcreek4-web:80
+    
+    shoalcreek4-web-8025-http:
+      loadbalancer:
+        servers:
+          - url: http://ddev-shoalcreek4-web:8025
+    
+    shoalcreek4-web-80-https:
+    
+      loadbalancer:
+        servers:
+          - url: http://ddev-shoalcreek4-web:80
+    
+    shoalcreek4-web-8025-https:
+    
+      loadbalancer:
+        servers:
+          - url: http://ddev-shoalcreek4-web:8025
+    
+
+
+tls:
+  certificates:
+    - certFile: /mnt/ddev-global-cache/traefik/certs/shoalcreek4.crt
+      keyFile: /mnt/ddev-global-cache/traefik/certs/shoalcreek4.key
+
