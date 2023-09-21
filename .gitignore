@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+*.DS_Store
 # gitignore template for Drupal 8 projects
 #
 # earlier versions of Drupal are tracked in `community/PHP/`
