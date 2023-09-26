@@ -37,8 +37,8 @@ source:
       name: end
       selector: end
     -
-      name: image
-      selector: image
+      name: field_image
+      selector: field_image
   ids:
     nid:
       type: integer
@@ -64,9 +64,9 @@ process:
       source: end
       from_format: U
       to_format: 'Y-m-d\TH:i:s'
-  field_highlighted_image:
+  field_image:
     plugin: image_import
-    source: image
+    source: field_image
     title: title
     alt: title
   nid: nid
