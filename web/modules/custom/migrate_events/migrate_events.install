@@ -21,6 +21,6 @@ function migrate_events_install(): void {
   // @todo Use \Drupal\Core\Extension\ExtensionPathResolver::getPath() when we
   // require Drupal > 9.3.0.
   $module_path = \Drupal::moduleHandler()->getModule('migrate_events')->getPath();
-  $file_source = $module_path . '/artifacts/apl_events.json';
-  \Drupal::service('file_system')->copy($file_source, $directory . '/apl_events.json', FileSystemInterface::EXISTS_REPLACE);
+  $file_source = $module_path . '/artifacts/events.json';
+  \Drupal::service('file_system')->copy($file_source, $directory . '/events.json', FileSystemInterface::EXISTS_REPLACE);
 }

@@ -76,7 +76,11 @@ process:
     plugin: default_value
     default_value: database
   nid: nid
-  title: title
+  title:
+    -
+      plugin: callback
+      callable: html_entity_decode
+      source: title
   field_database_access:
     -
       plugin: skip_on_empty
@@ -120,7 +124,10 @@ process:
       plugin: explode
       source: field_intended_audience
       delimiter: ','
-  field_help_text: field_help_text
+  field_help_text/value: field_help_text  
+  field_help_text/format:
+    plugin: default_value
+    default_value: full_html
   field_associated_file: field_associated_file
   field_database_types:
     -
