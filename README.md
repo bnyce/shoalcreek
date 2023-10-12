@@ -1,22 +1,48 @@
-# Composer-enabled Drupal template
+# Austin Public Library
 
-This is Pantheon's recommended starting point for forking new [Drupal](https://www.drupal.org/) upstreams
-that work with the Platform's Integrated Composer build process. It is also the
-Platform's standard Drupal 9 upstream.
+Drupal 9 powered website for the Austin Public Library. See it live at https://library.austintexas.gov/.
 
-Unlike with earlier Pantheon upstreams, files such as Drupal Core that you are
-unlikely to adjust while building sites are not in the main branch of the 
-repository. Instead, they are referenced as dependencies that are installed by
-Composer.
+## Development
 
-For more information and detailed installation guides, please visit the
-Integrated Composer Pantheon documentation: https://pantheon.io/docs/integrated-composer
+It's recommended you use [Docker](https://www.docker.com/) and [`ddev`](https://ddev.com/) to manage your local Drupal environment.
 
-## Contributing
+1. Install Docker Desktop: https://www.docker.com/products/docker-desktop/
+2. Install `ddev`: https://ddev.com/get-started/
+3. Start ddev and install Drupal 9
+   ```sh
+   ddev start
+   ddev composer install
+   ddev drush site:install --account-name=admin --account-pass=admin -y
+   ```
+4. Load the database backup
+   ```sh
+   ddev import-db --file=export/db.sql.gz
+   ```
+5. Run the latest database migrations
+   ```sh
+   ddev drush updatedb
+   ```
+   (You may get warnings about missing or invalid modules, just continue with `yes`)
+6. Download all of the static files necessary with this command
+   ```sh
+   curl -s -L https://library.austintexas.gov/library/shoalcreek/files.tar.gz | tar xvz - -C web/sites/default
+   ```
+   and then move everything from `web/sites/default/files_test` into `web/sites/default/files`
+7. Run `ddev drush uli` to get a URL for resetting the admin password
 
-Contributions are welcome in the form of GitHub pull requests. However, the
-`pantheon-upstreams/drupal-composer-managed` repository is a mirror that does not
-directly accept pull requests.
+From there you can access the site!
 
-Instead, to propose a change, please fork [pantheon-systems/drupal-composer-managed](https://github.com/pantheon-systems/drupal-composer-managed)
-and submit a PR to that repository.
+### Troubleshooting
+
+#### Problems with port 80 or 443
+
+`ddev` tries to use ports 80 and 443 for HTTP/S traffic respectively. If you can't use these ports, try changing the following configs in `.ddev/config.yaml`:
+
+```diff
+-# router_http_port: <port>  # Port to be used for http (defaults to global configuration, usually 80)
+-# router_https_port: <port> # Port for https (defaults to global configuration, usually 443)
++router_http_port: 4000 # Port to be used for http (defaults to global configuration, usually 80)
++router_https_port: 4443 # Port for https (defaults to global configuration, usually 443)
+```
+
+You can make the ports anything you want, just make sure you don't accidentally commit your changes to the repo.
