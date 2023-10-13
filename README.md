@@ -1,22 +1,83 @@
-# Composer-enabled Drupal template
+# Shoalcreek: APL Website Setup
 
-This is Pantheon's recommended starting point for forking new [Drupal](https://www.drupal.org/) upstreams
-that work with the Platform's Integrated Composer build process. It is also the
-Platform's standard Drupal 9 upstream.
+## Overview
 
-Unlike with earlier Pantheon upstreams, files such as Drupal Core that you are
-unlikely to adjust while building sites are not in the main branch of the 
-repository. Instead, they are referenced as dependencies that are installed by
-Composer.
+This repository contains everything needed to set up the Shoalcreek APL website locally using DDEV. It could also serve as a resource for other environments like Lando, XAMPP, or bare-metal installations of LAMP. The essentials for any Drupal installation—code, database, and files—are all included.
 
-For more information and detailed installation guides, please visit the
-Integrated Composer Pantheon documentation: https://pantheon.io/docs/integrated-composer
+## Prerequisites
 
-## Contributing
+- DDEV installed
+- Colima installed and running
+- Composer (usually comes with DDEV)
 
-Contributions are welcome in the form of GitHub pull requests. However, the
-`pantheon-upstreams/drupal-composer-managed` repository is a mirror that does not
-directly accept pull requests.
+## Quick Start
 
-Instead, to propose a change, please fork [pantheon-systems/drupal-composer-managed](https://github.com/pantheon-systems/drupal-composer-managed)
-and submit a PR to that repository.
+For those who want to get started quickly and have the prerequisites already in place, just clone this repository and run the setup script:
+
+```bash
+./setup.sh
+```
+
+This will take care of database import, dependency updates, and environment setup.
+
+## Manual Setup Steps
+
+### Code
+
+The Drupal codebase, including the core and modules, are managed using Composer, allowing for easy updates and dependency management.
+
+### Database
+
+A recent backup of the database is available in the `export/` directory. Import it using:
+
+```bash
+ddev import-db --file=export/db.sql.gz
+```
+
+### Files
+
+The essential Drupal 'files' directory is included in this repository and can be found in the standard location: sites/default/files.
+
+### Additional Configuration Steps
+
+1. Run the following command to update dependencies, including downloading Drupal core and contributed modules as listed in composer.json:
+
+```bash
+ddev composer update
+```
+
+
+2. Start the DDEV environment:
+
+Before starting the new instance, make sure to stop any running instances of Shoalcreek:
+
+```bash
+ddev stop --unlist shoalcreek
+```
+
+Then, start the DDEV environment:
+
+```bash
+ddev start
+```
+
+
+3. To clear the Drupal cache and launch the website, execute:
+
+```bash
+ddev drush cr; ddev launch
+```
+
+## Troubleshooting
+
+If you encounter issues, check the DDEV logs:
+
+```bash
+ddev logs
+```
+
+## Additional Notes
+
+This setup is specifically tailored for DDEV but can be adapted for other setups like Lando, XAMPP, or a bare-metal installation of LAMP. It can also be integrated into an existing Drupal setup.
+
+
