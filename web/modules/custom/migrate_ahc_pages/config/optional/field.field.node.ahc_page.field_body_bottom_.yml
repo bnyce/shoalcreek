@@ -1,0 +1,21 @@
+uuid: 41886685-f9dd-4313-84d9-67e752499585
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_body_bottom_
+    - node.type.ahc_page
+  module:
+    - text
+id: node.ahc_page.field_body_bottom_
+field_name: field_body_bottom_
+entity_type: node
+bundle: ahc_page
+label: 'Body (Bottom)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

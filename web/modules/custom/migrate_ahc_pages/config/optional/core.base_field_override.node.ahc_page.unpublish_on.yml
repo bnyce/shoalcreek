@@ -1,0 +1,18 @@
+uuid: a5784372-ea93-47aa-9826-13bd650564fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.ahc_page
+id: node.ahc_page.unpublish_on
+field_name: unpublish_on
+entity_type: node
+bundle: ahc_page
+label: 'Unpublish on'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: timestamp

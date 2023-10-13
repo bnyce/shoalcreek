@@ -1,0 +1,177 @@
+uuid: b505a21c-470c-4f9c-8313-da6462d75cd4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ahc_page.body
+    - field.field.node.ahc_page.feeds_item
+    - field.field.node.ahc_page.field_accordions
+    - field.field.node.ahc_page.field_bibliocommons_list_url
+    - field.field.node.ahc_page.field_body_bottom_
+    - field.field.node.ahc_page.field_booklist
+    - field.field.node.ahc_page.field_image_attribution_ahc
+    - field.field.node.ahc_page.field_main_image
+    - field.field.node.ahc_page.field_pdf
+    - field.field.node.ahc_page.field_postscript
+    - field.field.node.ahc_page.field_slideshow_ahc
+    - field.field.node.ahc_page.field_template
+    - field.field.node.ahc_page.field_video_ahc
+    - field.field.node.ahc_page.field_webform
+    - field.field.node.ahc_page.layout_builder__layout
+    - image.style.thumbnail
+    - node.type.ahc_page
+  module:
+    - image
+    - path
+    - scheduler
+    - text
+id: node.ahc_page.default
+targetEntityType: node
+bundle: ahc_page
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 12
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_accordions:
+    type: entity_reference_autocomplete
+    weight: 13
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_bibliocommons_list_url:
+    type: string_textfield
+    weight: 17
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_body_bottom_:
+    type: text_textarea
+    weight: 14
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_image_attribution_ahc:
+    type: text_textarea
+    weight: 11
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_main_image:
+    type: image_image
+    weight: 10
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_postscript:
+    type: text_textarea
+    weight: 15
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_slideshow_ahc:
+    type: image_image
+    weight: 16
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  publish_on:
+    type: datetime_timestamp_no_default
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 8
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  unpublish_on:
+    type: datetime_timestamp_no_default
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  url_redirects:
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  feeds_item: true
+  field_booklist: true
+  field_pdf: true
+  field_template: true
+  field_video_ahc: true
+  field_webform: true
+  langcode: true
+  layout_builder__layout: true

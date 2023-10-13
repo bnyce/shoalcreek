@@ -1,0 +1,22 @@
+uuid: 25dbafb0-4884-44fe-ab1c-ae97e5db43bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.ahc_page
+id: node.ahc_page.status
+field_name: status
+entity_type: node
+bundle: ahc_page
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

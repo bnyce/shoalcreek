@@ -1,0 +1,18 @@
+uuid: 2bbf38e5-ba7c-4242-acc7-3304ea41c7a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.ahc_page
+id: node.ahc_page.title
+field_name: title
+entity_type: node
+bundle: ahc_page
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

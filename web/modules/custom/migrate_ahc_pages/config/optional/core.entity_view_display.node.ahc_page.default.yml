@@ -1,0 +1,116 @@
+uuid: 72b8bd66-817b-4c41-838f-2bbabe803ba6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ahc_page.body
+    - field.field.node.ahc_page.feeds_item
+    - field.field.node.ahc_page.field_accordions
+    - field.field.node.ahc_page.field_bibliocommons_list_url
+    - field.field.node.ahc_page.field_body_bottom_
+    - field.field.node.ahc_page.field_booklist
+    - field.field.node.ahc_page.field_image_attribution_ahc
+    - field.field.node.ahc_page.field_main_image
+    - field.field.node.ahc_page.field_pdf
+    - field.field.node.ahc_page.field_postscript
+    - field.field.node.ahc_page.field_slideshow_ahc
+    - field.field.node.ahc_page.field_template
+    - field.field.node.ahc_page.field_video_ahc
+    - field.field.node.ahc_page.field_webform
+    - field.field.node.ahc_page.layout_builder__layout
+    - node.type.ahc_page
+    - views.view.24v
+  module:
+    - layout_builder
+    - layout_discovery
+    - text
+    - user
+    - views
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          0aedc20c-659a-4fe7-8bf0-b5307404fb4b:
+            uuid: 0aedc20c-659a-4fe7-8bf0-b5307404fb4b
+            region: content
+            configuration:
+              id: 'views_block:24v-block_1'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping:
+                nid: layout_builder.entity
+              views_label: ''
+              items_per_page: none
+            weight: 0
+            additional: {  }
+          f1e74093-9b5b-4bb1-b6c2-ea5bd3aa57b7:
+            uuid: f1e74093-9b5b-4bb1-b6c2-ea5bd3aa57b7
+            region: content
+            configuration:
+              id: 'field_block:node:ahc_page:field_body_bottom_'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+id: node.ahc_page.default
+targetEntityType: node
+bundle: ahc_page
+mode: default
+content:
+  field_accordions:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_bibliocommons_list_url:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_body_bottom_:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  feeds_item: true
+  field_booklist: true
+  field_image_attribution_ahc: true
+  field_main_image: true
+  field_pdf: true
+  field_postscript: true
+  field_slideshow_ahc: true
+  field_template: true
+  field_video_ahc: true
+  field_webform: true
+  langcode: true
+  layout_builder__layout: true
+  search_api_excerpt: true

@@ -1,9 +1,10 @@
+uuid: 78bd510a-92bd-4ed7-81fa-b15ca53e7bea
 langcode: en
 status: true
 dependencies:
   enforced:
     module:
-      - migrate_ahc_pages
+      - migrate_file
 id: migrate_ahc_pages
 class: null
 field_plugin_method: null
@@ -56,10 +57,13 @@ source:
 process:
   type:
     plugin: default_value
-    default_value: hero_image
-  path: path
+    default_value: ahc_page
+  path: pathvi
   title: title
-  body: body
+  body/value: body
+  body/format:
+    plugin: default_value
+    default_value: basic_html
   field_main_image:
     plugin: image_import
     source: field_main_image
