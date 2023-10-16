@@ -1,0 +1,28 @@
+uuid: e4f29b5e-f3b3-4913-b27c-599cadc7761d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_accordions
+    - node.type.accordion
+id: node.accordion.field_accordions
+field_name: field_accordions
+entity_type: node
+bundle: accordion
+label: '(sub) Accordions'
+description: 'Don''t use this field, except for copying into the newer field below. Thanks!'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      accordion: accordion
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,18 @@
+uuid: 6859adc6-d59f-47f7-b6d0-6d6d70cf080c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.accordion
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: node.accordion
+target_entity_type_id: node
+target_bundle: accordion
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,47 @@
+uuid: b0ab79d1-8df1-4600-afe5-e96c2186a44f
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+id: passports_accordion
+label: 'Passports accordion'
+code: |-
+  (function ($,jQuery) {
+    $(document).ready(function(){
+  console.log('hhh')
+  var hash = window.location.hash;
+  if(hash) {
+  $(hash + ' h3').addClass('active')
+  }
+
+  $('h3').click(function() {
+      $( this ).toggleClass('active');
+  });
+
+
+  /*
+  $('.jobportal-menu a, .accordion a').click(function() {
+      
+  var hash2 = (this).attr(href);
+  console.log(hash2 + ' is my hash2');
+
+  var dd1 = hash2 + ' h3';
+  $(dd1).addClass('active');
+  });
+  */
+
+  });
+  })(jQuery);
+noscript: ''
+noscriptRegion: {  }
+jquery: true
+header: false
+preprocess: true
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /passports
+contexts: {  }
+conditions_require_all: true

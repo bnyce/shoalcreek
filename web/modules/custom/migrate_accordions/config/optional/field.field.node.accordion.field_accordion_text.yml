@@ -1,0 +1,21 @@
+uuid: add37bf3-64d5-46b2-9b90-99ce1664b357
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_accordion_text
+    - node.type.accordion
+  module:
+    - text
+id: node.accordion.field_accordion_text
+field_name: field_accordion_text
+entity_type: node
+bundle: accordion
+label: 'Accordion Text'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
