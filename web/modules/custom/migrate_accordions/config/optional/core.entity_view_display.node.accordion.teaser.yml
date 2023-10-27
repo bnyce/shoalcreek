@@ -1,0 +1,64 @@
+uuid: 26427f25-0278-4132-ac08-930cbb09607c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.accordion.field_accordion_text
+    - field.field.node.accordion.field_anchor
+    - field.field.node.accordion.field_class
+    - field.field.node.accordion.field_image_gallery
+    - field.field.node.accordion.field_sub_accordions
+    - field.field.node.accordion.layout_builder__layout
+    - node.type.accordion
+    - views.view.teasers
+  module:
+    - layout_builder
+    - layout_discovery
+    - user
+    - views
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+        components:
+          066860a6-acc5-4c8a-9ec9-47fefc6a8d3d:
+            uuid: 066860a6-acc5-4c8a-9ec9-47fefc6a8d3d
+            region: content
+            configuration:
+              id: 'views_block:teasers-block_5'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping:
+                nid: layout_builder.entity
+              views_label: ''
+              items_per_page: none
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+id: node.accordion.teaser
+targetEntityType: node
+bundle: accordion
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_accordion_text: true
+  field_anchor: true
+  field_class: true
+  field_image_gallery: true
+  field_sub_accordions: true
+  langcode: true
+  layout_builder__layout: true
+  search_api_excerpt: true

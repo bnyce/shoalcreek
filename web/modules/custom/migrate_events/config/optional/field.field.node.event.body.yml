@@ -14,7 +14,7 @@ bundle: event
 label: 'Event Description'
 description: 'Text in the Event Category will be used. Any text entered here will appear after the category description.'
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:

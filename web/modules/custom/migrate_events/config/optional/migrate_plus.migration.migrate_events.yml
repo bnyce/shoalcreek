@@ -1,4 +1,3 @@
-uuid: 0af11413-7797-48d5-8981-abf6798f48e9
 langcode: en
 status: true
 dependencies:
@@ -19,7 +18,6 @@ source:
   data_parser_plugin: json
   urls:
     - 'public://migrate_events/events.json'
-  item_selector: event
   fields:
     -
       name: nid
@@ -36,6 +34,9 @@ source:
     -
       name: field__this_event_main_image
       selector: field__this_event_main_image
+    -
+      name: field__this_event_main_image_alt
+      selector: field__this_event_main_image_alt
     -
       name: field_subtitle
       selector: field_subtitle
@@ -96,9 +97,6 @@ source:
     -
       name: field_item_list
       selector: field_item_list
-    -
-      name: field__this_event_main_image
-      selector: field__this_event_main_image
   ids:
     nid:
       type: integer
@@ -106,7 +104,6 @@ process:
   type:
     plugin: default_value
     default_value: event
-  nid: nid
   title:
     -
       plugin: callback
@@ -116,8 +113,7 @@ process:
   field__this_event_main_image:
     plugin: image_import
     source: field__this_event_main_image
-    title: title
-    alt: title
+    alt: field__this_event_main_image
   field_slr_time_start:
     -
       plugin: format_date

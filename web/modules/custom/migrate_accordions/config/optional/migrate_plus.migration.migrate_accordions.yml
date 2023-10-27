@@ -16,7 +16,6 @@ source:
   data_parser_plugin: json
   urls:
     - 'public://migrate_accordions/accordions.json'
-  item_selector: accordion
   fields:
     -
       name: nid
@@ -52,11 +51,21 @@ process:
     plugin: default_value
     default_value: accordion
   langcode: langcode
-  title: title
-  field_accordion_text/value: field_accordion_text
+  title:
+    -
+      plugin: callback
+      callable: htmlspecialchars_decode
+      source: title
+  field_accordion_text/value:
+    -
+      plugin: callback
+      callable: htmlspecialchars_decode
+      source: field_accordion_text
   field_accordion_text/format:
     plugin: default_value
     default_value: basic_html
+  field_anchor: field_anchor
+  field_class: field_class
   field_image_gallery:
     -
       plugin: skip_on_empty
@@ -64,7 +73,7 @@ process:
       source: field_image_gallery
     -
       plugin: explode
-      source: field_images
+      source: field_image_gallery
       delimiter: ','
     -
       plugin: image_import
