@@ -1,4 +1,3 @@
-uuid: e8e5f258-a1a0-48f7-8407-58b43e223d74
 langcode: en
 status: true
 dependencies:
@@ -55,6 +54,9 @@ source:
     -
       name: description
       selector: description
+    -
+      name: changed
+      selector: changed
   ids:
     tid:
       type: integer
@@ -68,14 +70,15 @@ process:
   field_room_number: room_number
   field_is_slr: is_slr
   field_location: location
-  description: description
+  description:
+    plugin: default_value
+    default_value: 'basic_html'
   field_slr_image:
     plugin: image_import
     source: image_file
     destination: 'public://rooms/'
     alt: name
     skip_on_missing_source: true
-
   field_map: 
     plugin: image_import
     source: map_file
@@ -84,12 +87,7 @@ process:
     skip_on_missing_source: true
   field_capacity2: capacities
   field_slr_floor: floor
-  sticky:
-    plugin: default_value
-    default_value: 0
-  uid:
-    plugin: default_value
-    default_value: 0
+  changed: changed
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies: {  }
