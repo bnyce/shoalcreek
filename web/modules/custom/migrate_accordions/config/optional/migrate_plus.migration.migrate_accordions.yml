@@ -41,6 +41,18 @@ source:
     -
       name: field_sub_accordions
       selector: field_sub_accordions
+    -
+      name: status
+      selector: status
+    -
+      name: uid
+      selector: uid
+    -
+      name: created
+      selector: created
+    -
+      name: changed
+      selector: changed
   ids:
     nid:
       type: integer
@@ -95,6 +107,9 @@ process:
   uid:
     plugin: default_value
     default_value: 0
+  status: status
+  created: created
+  changed: changed
 destination:
   plugin: 'entity:node'
   translations: true
