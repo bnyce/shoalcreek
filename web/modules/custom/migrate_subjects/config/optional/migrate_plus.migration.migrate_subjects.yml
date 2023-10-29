@@ -26,6 +26,9 @@ source:
     -
       name: description
       selector: description
+    -
+      name: status
+      selector: status
   ids:
     tid:
       type: integer
@@ -42,11 +45,10 @@ process:
   sticky:
     plugin: default_value
     default_value: 0
-  uid:
-    plugin: default_value
-    default_value: 0
+  status: status
 destination:
   plugin: 'entity:taxonomy_term'
   overwrite_properties:
     - description
+    - status
 migration_dependencies: {  }
