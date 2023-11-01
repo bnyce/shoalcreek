@@ -69,7 +69,9 @@
         "drupal/paragraphs": "^1.15",
         "drupal/entity_usage": "^2.0@beta",
         "drupal/colorbox": "^2.0",
-        "drupal/features": "^3.13"
+        "drupal/features": "^3.13",
+        "drupal/crop": "^2.3",
+        "drupal/focal_point": "^2.0"
     },
     "require-dev": {
         "drupal/core-dev": "^9.2"
