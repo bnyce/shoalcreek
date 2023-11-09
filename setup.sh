@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # A well-documented script to set up the Shoalcreek APL website locally using DDEV
 
+# Exit on any command failures
+set -e
+
 # The following steps are included for completeness but are assumed to have already been done
 # as they are required to even obtain this script.
 
